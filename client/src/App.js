@@ -4,8 +4,13 @@ import "./global.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // components
-import Topbar from "./components/Topbar/Topbar";
-import Home from "./pages/Home/Home";
+import Topbar from "./components/topbar/Topbar";
+import Home from "./pages/home/Home";
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
+import Settings from "./pages/settings/Settings";
+import Write from "./pages/write/Write";
+import Single from "./pages/single/Single";
 
 const App = () => {
   return (
@@ -15,7 +20,7 @@ const App = () => {
 
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Single />
           </Route>
         </Switch>
       </Router>
