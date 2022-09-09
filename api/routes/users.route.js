@@ -42,12 +42,23 @@ router.delete("/:id", async (req, res) => {
       } catch (err) {
         return res.status(500).json(err);
       }
-      console.log(user);
     } catch (err) {
       return res.status(500).json("user not found!");
     }
   } else {
     return res.status(401).json("You can delete only your account!");
+  }
+});
+
+// GET SINGLE USER
+router.get("/:id", async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.params.id);
+    const { password, ...others } = user._doc;
+
+    return res.status(200).json(others);
+  } catch (err) {
+    return res.status(500).json(err);
   }
 });
 
