@@ -4,6 +4,7 @@ const colors = require("colors");
 
 // ROUTE
 const authRoute = require("./routes/auth");
+const userRoute = require("./routes/users.route");
 
 // config env
 const dotenv = require("dotenv");
@@ -15,6 +16,7 @@ connectedDB();
 
 app.use(express.json());
 app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
 
 // listen app
 app.listen(5000, () => {
