@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const colors = require("colors");
+// upload img
+const multer = require("multer");
 
 // ROUTE
 const authRoute = require("./routes/auth");
@@ -15,6 +17,27 @@ dotenv.config();
 // connected to db
 const connectedDB = require("./db/connect");
 connectedDB();
+
+// ############ UPLOAD IMG ############
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "images");
+  },
+
+  filename: (req, file, cb) => {
+    // cb(null, "pc.jpg"); // Only for test
+    cb(null, req.body.name);
+  },
+});
+
+const upload = multer({ storage: storage });
+
+app.post("/api/upload", upload.single("file"), (req, res) => {
+  return res.status(200).json("file has been uploaded..");
+});
+
+// ########################
 
 app.use(express.json());
 app.use("/api/auth", authRoute);
