@@ -10,6 +10,8 @@ export default function SinglePost() {
 
   const [singlePostData, setSinglePostData] = useState({});
 
+  // fetch data from unique ID 👍
+
   useEffect(() => {
     const singlePostData = async () => {
       const res = await axios.get(`/posts/${postId}`);
