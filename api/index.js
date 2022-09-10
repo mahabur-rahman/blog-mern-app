@@ -6,6 +6,7 @@ const colors = require("colors");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users.route");
 const postRoute = require("./routes/posts.route");
+const categoryRoute = require("./routes/category.route");
 
 // config env
 const dotenv = require("dotenv");
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
+app.use("/api/categories", categoryRoute);
 
 // listen app
 app.listen(5000, () => {
