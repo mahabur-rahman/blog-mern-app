@@ -48,13 +48,48 @@ router.delete("/:id", async (req, res) => {
     if (post.username === req.body.username) {
       try {
         await post.delete();
-        res.status(200).json("Post has been deleted...");
+        return res.status(200).json("Post has been deleted...");
       } catch (err) {
-        res.status(500).json(err);
+        return res.status(500).json(err);
       }
     } else {
-      res.status(401).json("You can delete only your post!");
+      return res.status(401).json("You can delete only your post!");
     }
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
+// GET SINGLE POST
+router.get("/:id", async (req, res) => {
+  try {
+    const post = await PostModel.findById(req.params.id);
+
+    return res.status(200).json(post);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
+// GET ALL POSTS
+router.get("/", async (req, res) => {
+  const username = req.query.user;
+  const catName = req.query.cat;
+
+  try {
+    let posts;
+    if (username) {
+      posts = await PostModel.find({ username });
+    } else if (catName) {
+      posts = await PostModel.find({
+        categories: {
+          $in: [catName],
+        },
+      });
+    } else {
+      posts = await PostModel.find();
+    }
+    res.status(200).json(posts);
   } catch (err) {
     res.status(500).json(err);
   }
