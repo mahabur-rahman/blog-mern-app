@@ -10,7 +10,7 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Settings from "./pages/settings/Settings";
 import Write from "./pages/write/Write";
-import Single from "./pages/single/Single";
+import IndividualPost from "./pages/individualPost/Post";
 
 const App = () => {
   const currentUser = true;
@@ -25,27 +25,23 @@ const App = () => {
             <Home />
           </Route>
 
-          <Route exact path="/posts">
+          <Route path="/posts">
             <Home />
           </Route>
 
-          <Route exact path="/single-post/:id">
-            <Single />
+          <Route path="/post/:postId">
+            <IndividualPost />
           </Route>
 
-          <Route exact path="/register">
+          <Route path="/register">
             {currentUser ? <Home /> : <Register />}
           </Route>
 
-          <Route exact path="/login">
-            {currentUser ? <Home /> : <Login />}
-          </Route>
+          <Route path="/login">{currentUser ? <Home /> : <Login />}</Route>
 
-          <Route exact path="/write">
-            {currentUser ? <Write /> : <Login />}
-          </Route>
+          <Route path="/write">{currentUser ? <Write /> : <Login />}</Route>
 
-          <Route exact path="/settings">
+          <Route path="/settings">
             {currentUser ? <Settings /> : <Login />}
           </Route>
         </Switch>
