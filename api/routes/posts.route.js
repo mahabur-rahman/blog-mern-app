@@ -18,6 +18,20 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const post = await PostModel.findById(req.params.id);
+
+    if (post.username === req.body.username) {
+      try {
+        const updatedPost = await PostModel.findByIdAndUpdate(
+          req.params.id,
+          { $set: req.body },
+          { new: true }
+        );
+
+        return res.status(200).json(updatedPost);
+      } catch (err) {
+        return res.status(500).json(err);
+      }
+    }
   } catch (err) {
     return res.status(500).json(err);
   }
