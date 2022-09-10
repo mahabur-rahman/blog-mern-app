@@ -23,7 +23,9 @@ router.put("/:id", async (req, res) => {
       try {
         const updatedPost = await PostModel.findByIdAndUpdate(
           req.params.id,
-          { $set: req.body },
+          {
+            $set: req.body,
+          },
           { new: true }
         );
 
@@ -31,9 +33,30 @@ router.put("/:id", async (req, res) => {
       } catch (err) {
         return res.status(500).json(err);
       }
+    } else {
+      return res.status(401).json("You can update only your post!");
     }
   } catch (err) {
     return res.status(500).json(err);
+  }
+});
+
+// DELETE POST
+router.delete("/:id", async (req, res) => {
+  try {
+    const post = await PostModel.findById(req.params.id);
+    if (post.username === req.body.username) {
+      try {
+        await post.delete();
+        res.status(200).json("Post has been deleted...");
+      } catch (err) {
+        res.status(500).json(err);
+      }
+    } else {
+      res.status(401).json("You can delete only your post!");
+    }
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
