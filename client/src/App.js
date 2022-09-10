@@ -25,23 +25,27 @@ const App = () => {
             <Home />
           </Route>
 
-          <Route path="/posts">
+          <Route exact path="/posts">
             <Home />
           </Route>
 
-          <Route path="/post/:id">
+          <Route exact path="/single-post/:id">
             <Single />
           </Route>
 
-          <Route path="/register">
+          <Route exact path="/register">
             {currentUser ? <Home /> : <Register />}
           </Route>
 
-          <Route path="/login">{currentUser ? <Home /> : <Login />}</Route>
+          <Route exact path="/login">
+            {currentUser ? <Home /> : <Login />}
+          </Route>
 
-          <Route path="/write">{currentUser ? <Write /> : <Login />}</Route>
+          <Route exact path="/write">
+            {currentUser ? <Write /> : <Login />}
+          </Route>
 
-          <Route path="/settings">
+          <Route exact path="/settings">
             {currentUser ? <Settings /> : <Login />}
           </Route>
         </Switch>
