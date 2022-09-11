@@ -13,7 +13,7 @@ import Write from "./pages/write/Write";
 import IndividualPost from "./pages/individualPost/Post";
 
 const App = () => {
-  const currentUser = true;
+  const currentUser = false;
 
   return (
     <>
