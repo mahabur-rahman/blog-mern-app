@@ -4,6 +4,9 @@ import { Link, useLocation } from "react-router-dom";
 import "./singlePost.css";
 
 export default function SinglePost() {
+  // after write then show image
+  const PF = "http://localhost:5000/images/";
+
   const location = useLocation();
 
   const postId = location.pathname.split("/")[2];
@@ -27,7 +30,11 @@ export default function SinglePost() {
     <div className="singlePost">
       <div className="singlePostWrapper">
         {singlePostData.photo && (
-          <img className="singlePostImg" src={singlePostData.photo} alt="" />
+          <img
+            className="singlePostImg"
+            src={PF + singlePostData.photo}
+            alt=""
+          />
         )}
         <h1 className="singlePostTitle">
           {singlePostData.title}
