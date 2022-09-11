@@ -8,6 +8,8 @@ export default function Topbar() {
   const { user, dispatch } = useContext(Context);
   // console.log("topbar user : ", user);
 
+  const PF = "http://localhost:5000/images/";
+
   // handleLogout
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
@@ -45,7 +47,7 @@ export default function Topbar() {
       <div className="topRight">
         {user ? (
           <Link className="link" to="/settings">
-            <img className="topImg" src={user.profilePic} alt="" />
+            <img className="topImg" src={PF + user.profilePic} alt="" />
           </Link>
         ) : (
           <ul className="topList">
