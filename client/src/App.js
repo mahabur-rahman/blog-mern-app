@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./global.css";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -11,9 +11,11 @@ import Register from "./pages/register/Register";
 import Settings from "./pages/settings/Settings";
 import Write from "./pages/write/Write";
 import IndividualPost from "./pages/individualPost/Post";
+import { Context } from "./context/Context";
 
 const App = () => {
-  const currentUser = false;
+  // const currentUser = false;
+  const { user: currentUser } = useContext(Context);
 
   return (
     <>
